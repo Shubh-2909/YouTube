@@ -14,16 +14,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    profilePic:{
-        type:String,
+    profilePic: {
+        type: String,
     },
-    premium:{
-        type:Boolean,
+    premium: {
+        type: Boolean,
         required: true,
         default: 0,
-    }
-}, {timestamps: true});
+    },
+    subscribed: [
+
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Channel',
+        }
+
+    ]
+}, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);
 
-export default User;
+module.exports = User;

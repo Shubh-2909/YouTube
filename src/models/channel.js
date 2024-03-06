@@ -32,9 +32,23 @@ const channelScema = new mongoose.Schema({
         default: function () {
             return this.monetized ? {} : undefined;
         }
-    }
+    },
+    videos:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Video'
+        }
+    ],
+    subscribers:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 },{timestamps:true});
+
+
 
 const Channel = mongoose.model('Channel', channelScema);
 
-export default Channel;
+module.exports = Channel;
